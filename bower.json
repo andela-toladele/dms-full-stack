@@ -1,0 +1,21 @@
+{
+  "name": "dms-full-stack",
+  "version": "0.0.0",
+  "homepage": "https://github.com/andela-toladele/dms-full-stack",
+  "authors": [
+    "andela-toladele <toyindipol@gmail.com>"
+  ],
+  "main": "index.html",
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular-material": "~0.10.0",
+    "angular": "~1.4.6"    
+  },
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
