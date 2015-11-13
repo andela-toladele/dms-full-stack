@@ -17,6 +17,9 @@ module.exports = function(app, passport) {
     .post(ctrl.signup)
     .get(ctrl.getAllUsers);
 
+  router.route('/user')
+    .get(ctrl.getCurrentUser);
+
   router.route('/users/:user_id')
     .put(ctrl.isLoggedIn, ctrl.editUser)
     .get(ctrl.getUser)
@@ -25,19 +28,19 @@ module.exports = function(app, passport) {
   router.route('/users/:user_id/roles')
     .post(ctrl.isLoggedIn, ctrl.setUserRole);
 
-  router.route('/users/:user_id/documents')
+  router.route('/users/documents/viewable')
     .get(ctrl.isLoggedIn, ctrl.getViewableDocs);
 
   router.route('/documents')
     .post(ctrl.isLoggedIn, ctrl.createDocument);
 
-   router.route('/documents/limit/:limit') 
+  router.route('/documents/limit/:limit')
     .get(ctrl.getAllDocuments);
 
-  router.route('/documents/date/:date') 
+  router.route('/documents/date/:date')
     .get(ctrl.getAllDocumentsByDate);
 
-  router.route('/documents/roles/:role_title') 
+  router.route('/documents/roles/:role_title')
     .get(ctrl.getAllDocumentsByRole);
 
 
@@ -69,9 +72,7 @@ module.exports = function(app, passport) {
   app.use('/api', router);
 
   app.use(function(req, res, next) {
-    res.status(404).json({
-      error: "The path does not exist"
-    });
+
     next();
   });
 

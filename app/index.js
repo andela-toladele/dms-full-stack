@@ -31,7 +31,7 @@ module.exports = function(app) {
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
 
-  app.use(express.static(__dirname + '/public'));
+  
 
   require('./routes')(app, passport);
 }

@@ -1,4 +1,6 @@
 var DocManager = require('./documentManager');
+var User = require('./schema')['User'];
+var Role = require('./schema')['Role'];
 var docManager = new DocManager();
 
 var Controller = function(passport) {
@@ -39,17 +41,20 @@ Controller.prototype.login = function(req, res, next) {
 
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      return res.status(401).send('Authentication failed!');
+      return res.status(401).send({
+        message: 'Authentication failed!'
+      });
     } else {
 
-      req.login(user, function(err) {
-        if (err) {
-          return next(err);
-        }
-        return res.json({
-          success: true,
-          message: 'User logged in!',
-          data: user
+      Role.populate(user, {
+        'path': 'roleId'
+      }, function(err, user) {
+
+        req.login(user, function(err) {
+          if (err) {
+            return next(err);
+          }
+          return res.json(user);
         });
       });
     }
@@ -80,6 +85,27 @@ Controller.prototype.isLoggedIn = function(req, res, next) {
 };
 
 
+Controller.prototype.getCurrentUser = function(req, res, next) {
+
+  if (req.user) {
+
+    Role.populate(req.user, {
+      'path': 'roleId'
+    }, function(err, user) {
+
+      req.login(user, function(err) {
+        res.json(user);
+      });
+    });
+  } else {
+
+    return res.status(401).send({
+      success: false,
+      message: 'No user in session!'
+    });
+  }
+}
+
 Controller.prototype.getAllUsers = function(req, res, next) {
 
   docManager.getAllUsers().then(function(users) {
@@ -106,7 +132,13 @@ Controller.prototype.editUser = function(req, res, next) {
 
   docManager.editUser(req.params.user_id, req.body.user).then(function(user) {
 
-    res.json(user);
+    Role.populate(user, {
+      'path': 'roleId'
+    }, function(err, user) {
+      req.login(user, function(err) {
+        res.json(user);
+      });
+    });
   }).catch(function(err) {
 
     res.status(422).send(err);
@@ -128,8 +160,9 @@ Controller.prototype.deleteUser = function(req, res, next) {
 Controller.prototype.setUserRole = function(req, res, next) {
 
   docManager.setUserRole(req.params.user_id, req.body.roleTitle).then(function(user) {
-
-    res.json(user);
+    req.login(user, function(err) {
+      res.json(user);
+    });
   }).catch(function(err) {
 
     res.status(422).send(err);
@@ -172,15 +205,8 @@ Controller.prototype.getAllDocuments = function(req, res, next) {
 
 Controller.prototype.getAllDocumentsByDate = function(req, res, next) {
 
-  var date, dateArr;
+  var date = req.params.date;
 
-  //convert date form yyyy-mm-dd format to date object
-  var dateArr = date.split("-");
-  if (dateArr.length > 2) {
-    date = new Date(dateArr[0], dateArr[1], dateArr[2]);
-  } else {
-    date = Date.now();
-  }
   docManager.getAllDocumentsByDate(date).then(function(docs) {
 
     res.json(docs);
@@ -207,7 +233,11 @@ Controller.prototype.getDocument = function(req, res, next) {
 
   docManager.getDocument(req.params.doc_id).then(function(doc) {
 
-    res.json(doc);
+    Role.populate(doc, {
+      'path': 'roles.role_ref'
+    }, function(err, doc) {      
+        res.json(doc);
+    });
   }).catch(function(err) {
 
     res.status(422).send(err);
@@ -229,7 +259,9 @@ Controller.prototype.deleteDocument = function(req, res, next) {
 
   docManager.deleteDocument(req.params.doc_id).then(function(doc) {
 
-    res.json(doc);
+    res.json({
+      message: 'Document deleted!'
+    });
   }).catch(function(err) {
 
     res.status(422).send(err);
@@ -240,7 +272,7 @@ Controller.prototype.deleteDocument = function(req, res, next) {
 //and whether document was created by user
 Controller.prototype.getViewableDocs = function(req, res, next) {
 
-  docManager.getViewableDocs(req.params.user_id).then(function(docs) {
+  docManager.getViewableDocs(req.user._id).then(function(docs) {
 
     res.json(docs);
   }).catch(function(err) {

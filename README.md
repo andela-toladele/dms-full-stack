@@ -1,6 +1,6 @@
-# Document Manager API
+# Document Manager Full Stack
 
-It is an API that has the following features:
+It is an app that has the following features:
 _____________________________________________
 
 * CRUD operations for user objects

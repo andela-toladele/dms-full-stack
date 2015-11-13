@@ -230,7 +230,18 @@ DocumentManager.prototype.getAllDocumentsByRole = function(roleTitle) {
 //Get all documents created on the date specified
 DocumentManager.prototype.getAllDocumentsByDate = function(date) {
 
+  if (typeof date === 'string') {
 
+    //convert date form yyyy-mm-dd format to date object
+    var dateArr = date.split('-');
+    if (dateArr.length > 2) {
+      date = new Date(dateArr[0], dateArr[1], dateArr[2]);
+    } else {
+      date = Date.now();
+    }
+
+  }
+  
   var promise = function() {
     return new Promise(function(resolve) {
 
