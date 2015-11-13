@@ -1,0 +1,16 @@
+<md-content>
+  <md-button ng-click="state.go('user.roles')">Create Role</md-button>
+  <div class="main">
+    <form name="docForm" class="doc-pane">
+      <div layout="column" layout-padding>
+        <md-input-container flex>
+          <input ng-model="title" placeholder="Title (required)" ng-required="true">
+        </md-input-container>
+        <textarea flex="65" row="4" ng-model="content" placeholder="Content (required)" ng-required="true"></textarea>
+        <section layout="row" layout-sm="column" layout-wrap layout-padding>
+          <md-button class="md-raised" ng-click="createDocument();" ng-disabled="docForm.$invalid">Create Document</md-button>
+        </section>
+      </div>
+    </form>
+  </div>
+</md-content>

@@ -1,0 +1,15 @@
+<md-content>
+  <md-button ng-click="state.go('user.createdoc')">Create Document</md-button>
+  
+  <div class="login">
+  <md-card layout="column" class="login-card">
+    <h4 class="md-display-1">Create role</h4>
+    <form name="roleForm">
+      <md-input-container flex>
+        <input ng-model="title" placeholder="Role title (required)" ng-required="true">
+      </md-input-container>
+      <md-button class="md-raised" ng-disabled="roleForm.$invalid" ng-click="createRole()">Create role</md-button>
+    </form>
+  </md-card>
+  </div>
+</md-content>

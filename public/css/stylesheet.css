@@ -1,0 +1,48 @@
+.main {
+  width: 70%;
+  margin: 50px auto;
+}
+
+.login {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.login-card {
+  padding: 20px;
+}
+
+.home-link {
+  padding: 4px;
+}
+
+.doc-text {
+  white-space: -moz-pre-wrap !important;
+  /* Mozilla, since 1999 */
+  white-space: -webkit-pre-wrap;
+  /*Chrome & Safari */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  white-space: pre-wrap;
+  /* css-3 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
+  word-break: break-all;
+  white-space: normal;
+  overflow-y: hidden;
+}
+
+.card {
+  height: auto;
+}
+
+.doc-pane {
+  width: 70%;
+  margin: 50px auto;
+}
+
+.set-role {
+  padding-top: 25px;
+}

@@ -1,0 +1,15 @@
+<md-content class="login">
+  <md-card layout="column" class="login-card">
+    <h4 class="md-display-1">Login</h4>
+    <form name="loginForm">
+    <md-input-container flex>
+      <input ng-model="username" placeholder="Username or email (required)" ng-required="true">
+    </md-input-container>    
+    <md-input-container flex>
+      <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
+    </md-input-container>
+    <md-button class="md-raised" ng-disabled="loginForm.$invalid" ng-click="login()">Login</md-button>
+    </form>
+    <a ui-sref="user.signup">Don't have an account yet?</a>
+  </md-card>
+</md-content>

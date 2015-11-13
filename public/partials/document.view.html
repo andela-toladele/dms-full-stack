@@ -1,0 +1,50 @@
+<md-content data-ng-init="loadPageData();">
+  <md-button ng-click="state.go('user.createdoc')">Create Document</md-button>
+  <md-button ng-click="state.go('user.roles')">Create Role</md-button>
+  <div class="main">
+    <div class="doc-pane">
+      <div layout="column" ng-if="!editMode">
+        <md-card>
+          <img src="images/document.png" height="200px">
+          <md-card-content>
+            <h2 class="md-title">{{doc.title}}</h2>
+            <p>
+              {{doc.content}}
+            </p>
+            <p>
+              <h6>Document Roles:</h6> {{doc.roles}}
+            </p>
+          </md-card-content>
+        </md-card>
+        <div layout class="md-padding" flex ng-if="canEdit">
+          <h5 flex="15" class="set-role">Add role:</h5>
+          <md-input-container flex="30">
+            <label>Role</label>
+            <md-select ng-model="selectedRole" aria-label="Roles">
+              <md-option ng-repeat="role in roles" value="{{role.title}}">
+                {{role.title}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-button class="md-fab md-mini" ng-disabled="!selectedRole" title="Add Role" ng-click="addRole(selectedRole)">+</md-button>
+        </div>
+      </div>
+      <div layout="column" ng-if="editMode">
+        <form name="docForm">
+          <div layout="column" layout-padding>
+            <md-input-container flex>
+              <input ng-model="doc.title" placeholder="Title (required)" ng-required="true">
+            </md-input-container>
+            <textarea flex="65" row="4" ng-model="doc.content" placeholder="Content (required)" ng-required="true"></textarea>
+          </div>
+        </form>
+      </div>
+      <section layout="row" layout-sm="column" layout-wrap ng-if="canEdit">
+        <md-button class="md-raised" ng-if="!editMode" ng-click="enableEditMode(true)">Edit Document</md-button>
+        <md-button class="md-raised" ng-if="editMode" ng-click="enableEditMode(false)">Cancel Edit</md-button>
+        <md-button class="md-raised" ng-if="editMode" ng-disabled="docForm.$invalid" ng-click="saveDocument();" ng-disabled="docForm.$invalid">Save</md-button>
+        <md-button class="md-raised" ng-if="!editMode" ng-click="deleteDocument()">Delete Document</md-button>
+      </section>
+    </div>
+  </div>
+</md-content>

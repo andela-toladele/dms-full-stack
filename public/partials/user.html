@@ -1,0 +1,22 @@
+<div>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2><md-button ng-click="state.go('user.home');"><md-icon md-svg-src="images/home.svg" class="s36 home-link" aria-label="Home"></md-icon>Document Manager App</md-button></h2>
+      <span flex></span>
+      <div ng-if="loggedIn">Welcome {{user.username}}
+        <md-button ng-click="logout()">
+          Sign out
+        </md-button>
+      </div>
+      <div ng-if="!loggedIn">
+        <md-button ng-click="state.go('user.login');">
+          Log in
+        </md-button>
+        <md-button ng-click="state.go('user.signup');">
+          Sign up
+        </md-button>
+      </div>
+    </div>
+  </md-toolbar>
+  <div ui-view></div>
+</div>

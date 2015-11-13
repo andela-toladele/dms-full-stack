@@ -1,0 +1,24 @@
+<md-content class="login">
+  <md-card layout="column" class="login-card">
+    <h4 class="md-display-1">Sign up</h4>
+    <form name="signupForm">
+      <md-input-container flex>
+        <input ng-model="newUser.username" placeholder="Username (required)" ng-required="true">
+      </md-input-container>
+      <md-input-container flex>
+        <input ng-model="newUser.firstname" placeholder="Firsname">
+      </md-input-container>
+      <md-input-container flex>
+        <input ng-model="newUser.lastname" placeholder="Lastname">
+      </md-input-container>
+      <md-input-container flex>
+        <input ng-model="newUser.email" type="email" placeholder="Email (required)" ng-required="true">
+      </md-input-container>
+      <md-input-container flex>
+        <input ng-model="newUser.password" type="password" placeholder="Password (required)" ng-required="true">
+      </md-input-container>
+      <md-button class="md-raised" ng-disabled="signupForm.$invalid" ng-click="signUp()">Sign up</md-button>
+    </form>
+    <a ui-sref="user.login">Already have an account?</a>
+  </md-card>
+</md-content>

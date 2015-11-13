@@ -1,0 +1,101 @@
+<div>
+  <md-button ng-click="state.go('user.roles');">Create Role</md-button>
+  <md-button ng-click="state.go('user.createdoc');">Create Document</md-button>
+  <md-content class="main">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="My Profile">
+        <md-content class="md-padding">
+          <form name="userForm">
+            <div layout="column" layout-padding ng-if="!editMode">
+              <h4 class="md-display-1">{{user.username}}'s profile</h4>
+              <div layout>
+                Username: {{user.username}}
+              </div>
+              <div layout>
+                Email: {{user.email}}
+              </div>
+              <div layout>
+                Firstname: {{user.name.firstname}}
+              </div>
+              <div layout>
+                Lastname: {{user.name.lastname}}
+              </div>
+              <div layout>
+                Role: {{user.role}}
+              </div>
+              <div layout class="md-padding" flex>
+                <h5 flex="10" class="set-role">Set role:</h5>
+                <md-input-container flex="25">
+                  <label>Role</label>
+                  <md-select ng-model="newRole" aria-label="Roles">
+                    <md-option ng-repeat="role in roles" value="{{role.title}}">
+                      {{role.title}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+                <md-button flex="5" class="md-fab md-mini" ng-disabled="!newRole" title="Set Role" ng-click="setUserRole(user._id, newRole)">✔</md-button>
+              </div>
+            </div>
+            <div layout="column" layout-padding ng-if="editMode">
+              <md-input-container flex>
+                <input ng-model="user.username" placeholder="Username (required)" ng-required="true">
+              </md-input-container>
+              <md-input-container flex>
+                <input ng-model="user.name.firstname" placeholder="Firsname">
+              </md-input-container>
+              <md-input-container flex>
+                <input ng-model="user.name.lastname" placeholder="Lastname">
+              </md-input-container>
+              <md-input-container flex>
+                <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+              </md-input-container>
+            </div>
+            <section layout="row" layout-sm="column" layout-wrap layout-padding>
+              <md-button class="md-raised" ng-click="editUser(user);" ng-show="editMode" ng-disabled="userForm.$invalid">Save</md-button>
+              <md-button class="md-raised" ng-click="enableEdit(false);" ng-show="editMode">Cancel</md-button>
+              <md-button class="md-raised" ng-click="enableEdit(true);" ng-show="!editMode">Edit</md-button>
+            </section>
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="My Documents">
+        <md-content class="md-padding">
+          <h4 class="md-display-1">{{user.username}}'s documents</h4>
+          <div flex layout>
+            <md-card ng-repeat="doc in myDocuments" class="card" flex="33" flex-md>
+              <img src="images/document.png" height="100px">
+              <md-card-content>
+                <h2 class="md-title">{{doc.title}}</h2>
+                <p class="doc-text">
+                  {{doc.content}}
+                </p>
+              </md-card-content>
+              <div class="md-actions" layout="row" layout-align="end center">
+                <md-button ng-click="viewDocument(doc._id)">View...</md-button>
+              </div>
+            </md-card>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="All Documents">
+        <md-content class="md-padding">
+          <h4 class="md-display-1">All documents</h4>
+          <div flex layout>
+            <md-card ng-repeat="doc in allDocuments" class="card" flex="33" flex-md>
+              <img src="images/document.png" height="100px">
+              <md-card-content>
+                <h2 class="md-title">{{doc.title}}</h2>
+                <p class="doc-text">
+                  {{doc.content}}
+                </p>
+              </md-card-content>
+              <div class="md-actions" layout="row" layout-align="end center">
+                <md-button ng-click="viewDocument(doc._id)">View...</md-button>
+              </div>
+            </md-card>
+          </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
