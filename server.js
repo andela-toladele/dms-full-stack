@@ -7,17 +7,13 @@ var session = require('express-session');
 
 mongoose.connect('mongodb://localhost/dmsfullstackdb');
 
-
-
-var port = 8000;
-
+var port = process.env.PORT || 8000; // set our port
+var staticdir = process.env.NODE_ENV === 'production' ? 'dist.prod' : 'dist.dev'; // get static 
 require('./app/index')(app);
 
-app.use(express.static(__dirname + '/public'));
-// application -------------------------------------------------------------
-app.get('/*', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
-});
+console.log(staticdir);
+
+app.use(express.static(__dirname + '/' + staticdir));
 
 // START THE SERVER
 // =============================================================================

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 angular.module('docManagerApp')
   .factory('UserService', ['$http', function($http) {
 

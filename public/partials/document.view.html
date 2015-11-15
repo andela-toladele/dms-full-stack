@@ -42,7 +42,7 @@
       <section layout="row" layout-sm="column" layout-wrap ng-if="canEdit">
         <md-button class="md-raised" ng-if="!editMode" ng-click="enableEditMode(true)">Edit Document</md-button>
         <md-button class="md-raised" ng-if="editMode" ng-click="enableEditMode(false)">Cancel Edit</md-button>
-        <md-button class="md-raised" ng-if="editMode" ng-disabled="docForm.$invalid" ng-click="saveDocument();" ng-disabled="docForm.$invalid">Save</md-button>
+        <md-button class="md-raised" ng-if="editMode" ng-disabled="docForm.$invalid" ng-click="saveDocument();">Save</md-button>
         <md-button class="md-raised" ng-if="!editMode" ng-click="deleteDocument()">Delete Document</md-button>
       </section>
     </div>

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 angular.module('docManagerApp')
   .controller('userCtrl', ['$scope', '$rootScope', '$location', '$state', 'UserService', function($scope, $rootScope, $location, $state, UserService) {
 
@@ -12,7 +12,7 @@ angular.module('docManagerApp')
     }).catch(function() {
 
       $rootScope.loggedIn = false;
-      $rootScope.user = {}
+      $rootScope.user = {};
       $location.url('/user/login');
     });
 
@@ -24,6 +24,6 @@ angular.module('docManagerApp')
         $location.url('/user/login');
 
       });
-    }
+    };
 
   }]);

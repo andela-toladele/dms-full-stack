@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 angular.module('docManagerApp')
   .controller('homeCtrl', ['$scope', '$rootScope', '$location', '$state', '$mdToast', 'UserService', 'RoleService', 'DocumentService', function($scope, $rootScope, $location, $state, $mdToast, UserService, RoleService, DocumentService) {
 
@@ -26,7 +26,7 @@ angular.module('docManagerApp')
         $rootScope.user = angular.copy($scope.tempUser);
         $scope.editMode = false;
       }
-    }
+    };
 
     $scope.editUser = function(user) {
 
@@ -39,7 +39,7 @@ angular.module('docManagerApp')
       }).catch(function(err, status) {
         processError(err, status);
       });
-    }
+    };
 
     $scope.setUserRole = function(userId, roleTitle) {
 
@@ -57,7 +57,7 @@ angular.module('docManagerApp')
       }).catch(function(err, status) {
         processError(err, status);
       });
-    }
+    };
 
 
     $scope.viewDocument = function(docId) {
@@ -65,12 +65,14 @@ angular.module('docManagerApp')
       $state.go('user.document', {
         doc_id: docId
       });
-    }
+    };
 
     function processError(err, status) {
 
+      var toast;
+      
       if (Number(status) === 422 || Number(status) === 401 || Number(status) === 403) {
-        var toast = $mdToast.simple()
+        toast = $mdToast.simple()
           .content(err.message)
           .action('OK')
           .highlightAction(true)
@@ -78,7 +80,7 @@ angular.module('docManagerApp')
           .position('top right');
         $mdToast.show(toast);
       } else {
-        var toast = $mdToast.simple()
+        toast = $mdToast.simple()
           .content("An error just occured, please try again!")
           .action('OK')
           .highlightAction(true)

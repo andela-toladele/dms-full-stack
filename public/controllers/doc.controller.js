@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 angular.module('docManagerApp')
   .controller('docCtrl', ['$scope', '$rootScope', '$state', '$mdToast', '$location', 'RoleService', 'DocumentService', function($scope, $rootScope, $state, $mdToast, $location, RoleService, DocumentService) {
 
@@ -30,8 +30,7 @@ angular.module('docManagerApp')
         processError(err, status);
       });
 
-
-    }
+    };
 
     $scope.createDocument = function() {
       DocumentService.createDocument({
@@ -47,8 +46,7 @@ angular.module('docManagerApp')
 
         processError(err, status);
       });
-
-    }
+    };
 
     $scope.enableEditMode = function(mode) {
 
@@ -60,7 +58,7 @@ angular.module('docManagerApp')
         $scope.doc = angular.copy($scope.tempDoc);
         $scope.editMode = false;
       }
-    }
+    };
 
     $scope.saveDocument = function() {
 
@@ -71,7 +69,7 @@ angular.module('docManagerApp')
       }).catch(function(err, status) {
         processError(err, status);
       });
-    }
+    };
 
      $scope.deleteDocument = function() {
 
@@ -82,7 +80,7 @@ angular.module('docManagerApp')
       }).catch(function(err, status) {
         processError(err, status);
       });
-    }
+    };
 
     $scope.addRole = function(selectedRole) {
 
@@ -112,13 +110,14 @@ angular.module('docManagerApp')
       }).catch(function(err, status) {
         processError(err, status);
       });
-    }
+    };
 
 
     function processError(err, status) {
 
+      var toast;
       if (Number(status) === 422 || Number(status) === 401 || Number(status) === 403) {
-        var toast = $mdToast.simple()
+        toast = $mdToast.simple()
           .content(err.message)
           .action('OK')
           .highlightAction(true)
@@ -126,7 +125,7 @@ angular.module('docManagerApp')
           .position('top right');
         $mdToast.show(toast);
       } else {
-        var toast = $mdToast.simple()
+        toast = $mdToast.simple()
           .content("An error just occured, please try again!")
           .action('OK')
           .highlightAction(true)

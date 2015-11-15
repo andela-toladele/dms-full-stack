@@ -1,6 +1,6 @@
 'use strict';
 angular.module('docManagerApp', ['ui.router', 'ngMaterial'])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
       .state('user', {
@@ -40,4 +40,4 @@ angular.module('docManagerApp', ['ui.router', 'ngMaterial'])
       });
 
     $urlRouterProvider.otherwise('/user/home');
-  });
+  }]);
