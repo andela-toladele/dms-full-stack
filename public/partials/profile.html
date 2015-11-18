@@ -1,0 +1,93 @@
+<div>
+  <div id="docmapp__sidebar">
+    <div layout-padding layout="column" style="color: #fff; margin-top: 100px;">
+      <ul>
+        <li>
+          <a ng-click="state.go('user.createdoc');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.roles');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add role</md-tooltip>
+        </li>
+        <li>
+          <a href="" class="active">
+            <i class="fa fa-user"></i>
+          </a>
+          <md-tooltip md-direction="right">Profile</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.documents');">
+            <i class="fa fa-file-text"></i>
+          </a>
+          <md-tooltip md-direction="right">View my document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.home');">
+            <i class="fa fa-book"></i>
+          </a>
+          <md-tooltip md-direction="right">View all documents</md-tooltip>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <md-content class="main">
+    <md-content class="md-padding docmApp__wrapper" aria-label="My profile">
+      <h4 class="md-display-1">My profile</h4>
+      <form name="userForm">
+        <div layout="column" layout-padding ng-if="!editMode">
+          <div layout>
+            Username: {{user.username}}
+          </div>
+          <div layout>
+            Email: {{user.email}}
+          </div>
+          <div layout>
+            Firstname: {{user.name.firstname}}
+          </div>
+          <div layout>
+            Lastname: {{user.name.lastname}}
+          </div>
+          <div layout>
+            Role: {{user.role}}
+          </div>
+          <div layout class="md-padding" flex>
+            <h5 flex="10" class="set-role">Set role:</h5>
+            <md-input-container flex="25">
+              <label>Role</label>
+              <md-select ng-model="newRole" aria-label="Roles">
+                <md-option ng-repeat="role in roles" value="{{role.title}}">
+                  {{role.title}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-button flex="5" class="md-fab md-mini" ng-disabled="!newRole" title="Set Role" ng-click="setUserRole(user._id, newRole)">✔</md-button>
+          </div>
+        </div>
+        <div layout="column" layout-padding ng-if="editMode">
+          <md-input-container flex>
+            <input ng-model="user.username" placeholder="Username (required)" ng-required="true">
+          </md-input-container>
+          <md-input-container flex>
+            <input ng-model="user.name.firstname" placeholder="Firsname">
+          </md-input-container>
+          <md-input-container flex>
+            <input ng-model="user.name.lastname" placeholder="Lastname">
+          </md-input-container>
+          <md-input-container flex>
+            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+          </md-input-container>
+        </div>
+        <section layout="row" layout-sm="column" layout-wrap layout-padding layout-align="end center" style="width: 50%">
+          <md-button class="action" ng-click="editUser(user);" ng-show="editMode" ng-disabled="userForm.$invalid">Save</md-button>
+          <md-button class="change-view" ng-click="enableEdit(false);" ng-show="editMode">Cancel</md-button>
+          <md-button class="action" ng-click="enableEdit(true);" ng-show="!editMode">Edit</md-button>
+        </section>
+      </form>
+    </md-content>
+  </md-content>
+</div>

@@ -37,6 +37,16 @@ angular.module('docManagerApp', ['ui.router', 'ngMaterial'])
         url: '/manage-document/:doc_id',
         templateUrl: 'partials/document.view.html',
         controller: 'docCtrl'
+      })
+      .state('user.documents', {
+        url: '/documents',
+        templateUrl: 'partials/documents.html',
+        controller: 'homeCtrl'
+      })
+      .state('user.profile', {
+        url: '/profile',
+        templateUrl: 'partials/profile.html',
+        controller: 'homeCtrl'
       });
 
     $urlRouterProvider.otherwise('/user/home');

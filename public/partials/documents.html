@@ -1,0 +1,57 @@
+<div>
+  <div id="docmapp__sidebar">
+    <div layout-padding layout="column" style="color: #fff; margin-top: 100px;">
+      <ul>
+        <li>
+          <a ng-click="state.go('user.createdoc');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.roles');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add role</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.profile');">
+            <i class="fa fa-user"></i>
+          </a>
+          <md-tooltip md-direction="right">Profile</md-tooltip>
+        </li>
+        <li>
+          <a href="" class="active">
+            <i class="fa fa-file-text"></i>
+          </a>
+          <md-tooltip md-direction="right">View my document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.home');">
+            <i class="fa fa-book"></i>
+          </a>
+          <md-tooltip md-direction="right">View all documents</md-tooltip>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <md-content class="main">
+    <md-content class="md-padding docmApp__wrapper" aria-label="My Documents">
+      <h4 class="md-display-1">My documents</h4>
+      <div flex layout layout-wrap>
+        <md-card ng-repeat="doc in myDocuments" class="card" flex="30" flex-md>              
+          <md-card-content>
+            <h2 class="md-title">{{doc.title}}</h2>
+            <p class="doc-text">
+              {{doc.content}}
+            </p>
+          </md-card-content>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <md-button ng-click="viewDocument(doc._id)">View...</md-button>
+          </div>
+        </md-card>
+      </div>
+    </md-content>
+  </md-content>
+</div>
