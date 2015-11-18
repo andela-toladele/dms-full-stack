@@ -1,15 +1,32 @@
 <md-content class="login">
-  <md-card layout="column" class="login-card">
-    <h4 class="md-display-1">Login</h4>
-    <form name="loginForm">
-    <md-input-container flex>
-      <input ng-model="username" placeholder="Username or email (required)" ng-required="true">
-    </md-input-container>    
-    <md-input-container flex>
-      <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
-    </md-input-container>
-    <md-button class="md-raised" ng-disabled="loginForm.$invalid" ng-click="login()">Login</md-button>
-    </form>
+  <md-content class="docMapp__login__about">
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div>
+      <button class="doc__login__button" ng-click="state.go('user.signup');">Sign up</button>
+    </div>
+  </md-content>
+  <md-card class="login-card" flex-offset="30" layout-padding layout="column">
+    <h4 class="md-display-1" style="font-size: 28px">Login</h4>
+      <form name="loginForm" id="form__edit">
+        <md-content layout-padding layout="row">
+          <md-input-container flex>
+            <label>Username or email (required)</label>
+            <input ng-model="username" ng-required="true" type="text">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Password (required)</label>
+            <input ng-model="password" type="password" ng-required="true">
+          </md-input-container>
+        </md-content>
+        <md-button class="action" id="button__edit" ng-disabled="loginForm.$invalid" ng-click="login()">Login</md-button>
+      </form>
     <a ui-sref="user.signup">Don't have an account yet?</a>
   </md-card>
 </md-content>

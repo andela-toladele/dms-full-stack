@@ -3,13 +3,62 @@
   margin: 50px auto;
 }
 
-.login {
-  width: 50%;
-  margin: 50px auto;
+md-toolbar:not(.md-menu-toolbar) {
+  background-color: rgb(144, 183, 120);
 }
 
-.login-card {
-  padding: 20px;
+.md-button#button__edit {
+  margin: 18px 0px !important;
+}
+
+#form__edit {
+  margin-top: -38px;
+}
+
+.login-card   a {
+  font-size: 12px;
+}
+
+md-content.login {
+  background: url('../images/background.jpg');
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+md-content.login > .login-card {
+  width: 40%;
+  text-align: center;
+}
+
+md-content.login > .signup-card {  
+  margin: 220px auto 0;
+}
+
+.docMapp__login__about {
+  background-color: transparent;
+  color: #fff;
+  width: 60%;
+  text-align: center;
+  margin: 150px auto 20px;
+}
+
+button.doc__login__button {
+  margin: 15px;
+  background-color: transparent;
+  box-shadow: none;
+  border: 2px solid #fff;
+  font-size: 14px;
+  color: white;
+  padding: 16px;
+  border-radius: 28px;
+  width: 130px;
+}
+
+button.doc__login__button:hover {
+  background-color: rgba(144, 183, 120, 0.51);
+  transition: 2s;
 }
 
 .home-link {
@@ -45,4 +94,55 @@
 
 .set-role {
   padding-top: 25px;
+} 
+
+#docmapp__sidebar {
+  background-color: #000;
+  height: 100%;
+  width: 50px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 20px 20px 20px 6px;
+}
+
+ul li a {
+  color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul li a:hover,
+ul li a.active {
+  color: #888;
+}
+
+.docmApp__wrapper {
+  margin-top: -46px;
+}
+
+button.action {
+  color: #fff;
+  background-color: #0B3B17;
+}
+
+button.action:hover {
+  color: #0B3B17;
+  background-color: #81F781;
+}
+
+button.change-view {
+  color: #0B3B17;
+  background-color: #E6E6E6;
+}
+
+

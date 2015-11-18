@@ -1,15 +1,51 @@
-<md-content>
-  <md-button ng-click="state.go('user.createdoc')">Create Document</md-button>
-  
-  <div class="login">
-  <md-card layout="column" class="login-card">
-    <h4 class="md-display-1">Create role</h4>
-    <form name="roleForm">
-      <md-input-container flex>
-        <input ng-model="title" placeholder="Role title (required)" ng-required="true">
-      </md-input-container>
-      <md-button class="md-raised" ng-disabled="roleForm.$invalid" ng-click="createRole()">Create role</md-button>
-    </form>
-  </md-card>
+<div>
+  <div id="docmapp__sidebar">
+    <div layout-padding layout="column" style="color: #fff; margin-top: 100px;">
+      <ul>
+        <li>
+          <a ng-click="state.go('user.createdoc');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add document</md-tooltip>
+        </li>
+        <li>
+          <a href="" class="active">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add role</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.profile');">
+            <i class="fa fa-user"></i>
+          </a>
+          <md-tooltip md-direction="right">Profile</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.documents');">
+            <i class="fa fa-file-text"></i>
+          </a>
+          <md-tooltip md-direction="right">View my document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.home');">
+            <i class="fa fa-book"></i>
+          </a>
+          <md-tooltip md-direction="right">View all documents</md-tooltip>
+        </li>
+      </ul>
+    </div>
   </div>
-</md-content>
+  <md-content class="main">
+    <md-content class="md-padding docmApp__wrapper" aria-label="Create new role">
+      <h4 class="md-display-1">Create new role</h4>
+      <form name="roleForm">
+        <md-input-container flex class="md-padding">
+          <input ng-model="title" placeholder="Role title (required)" ng-required="true">
+        </md-input-container>
+        <section layout layout-padding layout-align="end center">
+          <md-button class="action" ng-disabled="roleForm.$invalid" ng-click="createRole()">Create role</md-button>
+        </section>
+      </form>
+    </md-content>
+  </md-content>
+</div>

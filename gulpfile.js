@@ -16,6 +16,7 @@ var paths = {
   index: './public/index.html',
   partials: ['public/**/*.html', '!public/index.html'],
   images: './public/images/**/*',
+  fonts: './public/fonts/**/*',
   distDev: './dist.dev',
   distProd: './dist.prod',
   distScriptsProd: './dist.prod/scripts',
@@ -141,9 +142,19 @@ pipes.processedImagesDev = function() {
     .pipe(gulp.dest(paths.distDev + '/images/'));
 };
 
+pipes.processedFontsDev = function() {
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest(paths.distDev + '/fonts/'));
+};
+
 pipes.processedImagesProd = function() {
   return gulp.src(paths.images)
     .pipe(gulp.dest(paths.distProd + '/images/'));
+};
+
+pipes.processedFontsProd = function() {
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest(paths.distProd + '/fonts/'));
 };
 
 
@@ -204,12 +215,12 @@ pipes.builtIndexProd = function() {
 };
 
 pipes.builtAppDev = function() {
-  return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev(), pipes.processedImagesDev());
+  return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev(), pipes.processedImagesDev(), pipes.processedFontsDev());
 };
 
 pipes.builtAppProd = function() {
 
-  return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd());
+  return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd(), pipes.processedFontsProd());
 };
 
 // removes all compiled dev files

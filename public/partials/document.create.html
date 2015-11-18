@@ -1,16 +1,54 @@
-<md-content>
-  <md-button ng-click="state.go('user.roles')">Create Role</md-button>
-  <div class="main">
-    <form name="docForm" class="doc-pane">
-      <div layout="column" layout-padding>
-        <md-input-container flex>
-          <input ng-model="title" placeholder="Title (required)" ng-required="true">
-        </md-input-container>
-        <textarea flex="65" row="4" ng-model="content" placeholder="Content (required)" ng-required="true"></textarea>
-        <section layout="row" layout-sm="column" layout-wrap layout-padding>
-          <md-button class="md-raised" ng-click="createDocument();" ng-disabled="docForm.$invalid">Create Document</md-button>
-        </section>
-      </div>
-    </form>
+<div>
+  <div id="docmapp__sidebar">
+    <div layout-padding layout="column" style="color: #fff; margin-top: 100px;">
+      <ul>
+        <li>
+          <a href="" class="active">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.roles');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add role</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.profile');">
+            <i class="fa fa-user"></i>
+          </a>
+          <md-tooltip md-direction="right">Profile</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.documents');">
+            <i class="fa fa-file-text"></i>
+          </a>
+          <md-tooltip md-direction="right">View my document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.home');">
+            <i class="fa fa-book"></i>
+          </a>
+          <md-tooltip md-direction="right">View all documents</md-tooltip>
+        </li>
+      </ul>
+    </div>
   </div>
-</md-content>
+  <md-content class="main">
+    <md-content class="md-padding docmApp__wrapper" aria-label="Add new Document">
+      <h4 class="md-display-1">Add new document</h4>
+      <form name="docForm">
+        <div layout="column" layout-padding>
+          <md-input-container flex>
+            <input ng-model="title" placeholder="Title (required)" ng-required="true">
+          </md-input-container>
+          <textarea flex="65" row="4" ng-model="content" placeholder="Content (required)" ng-required="true" class="md-padding"></textarea>
+          <section layout="row" layout-padding layout-align="end center">
+            <md-button class="action" ng-click="createDocument();" ng-disabled="docForm.$invalid">Create Document</md-button>
+          </section>
+        </div>
+      </form>
+    </md-content>
+  </md-content>
+</div>

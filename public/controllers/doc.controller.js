@@ -25,9 +25,9 @@ angular.module('docManagerApp')
 
           $scope.roles = res.data;
         });
-      }).catch(function(err, status) {
+      }).catch(function(err) {
 
-        processError(err, status);
+        processError(err);
       });
 
     };
@@ -42,9 +42,9 @@ angular.module('docManagerApp')
           doc_id: res.data._id
         });
 
-      }).catch(function(err, status) {
+      }).catch(function(err) {
 
-        processError(err, status);
+        processError(err);
       });
     };
 
@@ -66,8 +66,8 @@ angular.module('docManagerApp')
 
         $scope.editMode = false;
 
-      }).catch(function(err, status) {
-        processError(err, status);
+      }).catch(function(err) {
+        processError(err);
       });
     };
 
@@ -77,8 +77,8 @@ angular.module('docManagerApp')
 
         $state.go('user.home');
 
-      }).catch(function(err, status) {
-        processError(err, status);
+      }).catch(function(err) {
+        processError(err);
       });
     };
 
@@ -107,8 +107,8 @@ angular.module('docManagerApp')
         }
 
 
-      }).catch(function(err, status) {
-        processError(err, status);
+      }).catch(function(err) {
+        processError(err);
       });
     };
 
@@ -116,9 +116,9 @@ angular.module('docManagerApp')
     function processError(err, status) {
 
       var toast;
-      if (Number(status) === 422 || Number(status) === 401 || Number(status) === 403) {
+      if (Number(err.status) === 422 || Number(err.status) === 401 || Number(err.status) === 403) {
         toast = $mdToast.simple()
-          .content(err.message)
+          .content(err.data.message)
           .action('OK')
           .highlightAction(true)
           .hideDelay(0)

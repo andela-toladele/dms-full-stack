@@ -1,11 +1,49 @@
-<md-content data-ng-init="loadPageData();">
-  <md-button ng-click="state.go('user.createdoc')">Create Document</md-button>
-  <md-button ng-click="state.go('user.roles')">Create Role</md-button>
-  <div class="main">
-    <div class="doc-pane">
+<div data-ng-init="loadPageData();">
+  
+
+  <div id="docmapp__sidebar">
+    <div layout-padding layout="column" style="color: #fff; margin-top: 100px;">
+      <ul>
+        <li>
+          <a ng-click="state.go('user.createdoc');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.roles');">
+            <i class="fa fa-plus-circle"></i>
+          </a>
+          <md-tooltip md-direction="right">Add role</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.profile');">
+            <i class="fa fa-user"></i>
+          </a>
+          <md-tooltip md-direction="right">Profile</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.documents');">
+            <i class="fa fa-file-text"></i>
+          </a>
+          <md-tooltip md-direction="right">View my document</md-tooltip>
+        </li>
+        <li>
+          <a ng-click="state.go('user.home');">
+            <i class="fa fa-book"></i>
+          </a>
+          <md-tooltip md-direction="right">View all documents</md-tooltip>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <md-content class="main">
+    <md-content class="md-padding docmApp__wrapper" aria-label="{{doc.title}}">
+      <h4 class="md-display-1">{{doc.title}}</h4>
       <div layout="column" ng-if="!editMode">
-        <md-card>
-          <img src="images/document.png" height="200px">
+        <md-card>          
           <md-card-content>
             <h2 class="md-title">{{doc.title}}</h2>
             <p>
@@ -39,12 +77,13 @@
           </div>
         </form>
       </div>
-      <section layout="row" layout-sm="column" layout-wrap ng-if="canEdit">
-        <md-button class="md-raised" ng-if="!editMode" ng-click="enableEditMode(true)">Edit Document</md-button>
-        <md-button class="md-raised" ng-if="editMode" ng-click="enableEditMode(false)">Cancel Edit</md-button>
-        <md-button class="md-raised" ng-if="editMode" ng-disabled="docForm.$invalid" ng-click="saveDocument();">Save</md-button>
-        <md-button class="md-raised" ng-if="!editMode" ng-click="deleteDocument()">Delete Document</md-button>
+      <section layout="row" layout-sm="column" layout-wrap ng-if="canEdit" layout-padding layout-align="end center">
+        <md-button class="action" ng-if="!editMode" ng-click="enableEditMode(true)">Edit Document</md-button>
+        <md-button class="change-view" ng-if="editMode" ng-click="enableEditMode(false)">Cancel Edit</md-button>
+        <md-button class="action" ng-if="editMode" ng-disabled="docForm.$invalid" ng-click="saveDocument();">Save</md-button>
+        <md-button class="change-view" ng-if="!editMode" ng-click="deleteDocument()">Delete Document</md-button>
       </section>
     </div>
-  </div>
-</md-content>
+    </md-content>
+  </md-content>
+</div>

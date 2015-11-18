@@ -36,8 +36,8 @@ angular.module('docManagerApp')
 
         $scope.editMode = false;
 
-      }).catch(function(err, status) {
-        processError(err, status);
+      }).catch(function(err) {
+        processError(err);
       });
     };
 
@@ -54,8 +54,8 @@ angular.module('docManagerApp')
           .position('top right');
         $mdToast.show(toast);
 
-      }).catch(function(err, status) {
-        processError(err, status);
+      }).catch(function(err) {
+        processError(err);
       });
     };
 
@@ -71,9 +71,9 @@ angular.module('docManagerApp')
 
       var toast;
       
-      if (Number(status) === 422 || Number(status) === 401 || Number(status) === 403) {
+      if (Number(err.status) === 422 || Number(err.status) === 401 || Number(err.status) === 403) {
         toast = $mdToast.simple()
-          .content(err.message)
+          .content(err.data.message)
           .action('OK')
           .highlightAction(true)
           .hideDelay(0)
